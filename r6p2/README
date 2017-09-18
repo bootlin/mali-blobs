@@ -1,0 +1,18 @@
+==========================================================================
+Author: Albert Yu (Allwinner Technology)
+
+Version: 1.0
+
+Date: 2016-08-08
+
+==========================================================================
+How to use GPU acceleration?
+============================
+(1) Load the Mali GPU device driver.
+(2) Copy the GPU libraries to the target board and make sure the GPU libraries
+	can be found by executable files.
+
+-----Note-----
+When you copy the GPU libraries, you had better use -d option for cp command
+to copy the soft links because this can make the image size much less.
+--------------
