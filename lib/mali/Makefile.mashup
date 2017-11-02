@@ -1,0 +1,4 @@
+# Makefile for when everything is bunched together in libMali.so
+
+install: libMali.so
+	$(INSTALL_DATA) $^ $(libdir)
