@@ -1,0 +1,10 @@
+DESTDIR ?= /
+prefix ?= /usr/
+libdir ?= $(DESTDIR)$(prefix)lib/
+includedir ?= $(DESTDIR)$(prefix)/include
+
+INSTALL ?= install
+INSTALL_DATA ?= $(INSTALL) -m 644
+MKDIR ?= mkdir -p
+LN ?= ln -sf
+RM ?= rm -f

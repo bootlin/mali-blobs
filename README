@@ -1,0 +1,99 @@
+Mali userspace driver installation.
+-----------------------------------
+
+This repository contains a complete set of Mali userspace drivers, including
+proprietary OpenGLESv2/EGL binaries.
+
+Prerequisite:
+-------------
+
+You will need to have a matching version of libUMP installed.
+
+You can get this from the linux sunxi package server, which is
+documented at http://linux-sunxi.org/Packages
+
+Or you can manually build libump from the sunxi libump git repository at
+https://github.com/linux-sunxi/libump
+
+Cloning this repository:
+------------------------
+
+> git clone https://github.com/linux-sunxi/sunxi-mali.git
+> git submodule init
+> git submodule update
+
+This should make sure that you fully set up this repository and the
+sunxi-mali-proprietary submodule.
+
+Installing the binaries:
+------------------------
+
+First off, while there are some android binaries present, there is currently no
+support for installing the android binaries, you will have to do so manually.
+
+When everything goes well, all you need to do is run:
+
+> make install
+
+This should autodetect things, and install the correct mali GLES and EGL
+libraries in your system.
+
+Verifying the EGL/GLES installation:
+------------------------------------
+
+After installation, run the following to build the hello triangle utility:
+
+> make test
+
+When this succeeds, you can attempt to run it:
+
+> test/test
+
+If this shows a colourful triangle in a grey background measuring 480x480 then
+all is fine!
+
+This test application will also print EGL and GL information to the command
+line.
+
+Do make sure that you are either on the console for the framebuffer binaries to
+work correctly. For X11 binaries, do make sure that X has started.
+
+More control:
+-------------
+
+The build system tries to detect a few things on its own. It creates a
+config.mk which can be remade by running
+
+> make config
+
+The build systen will try to determine which version of the userspace
+binaries need to be installed. It will use the utility in version/ to query the
+kernel driver for its version. So please make sure to run this on the target
+system with the mali kernel driver loaded. The mali driver version can be
+overridden when configuring with the VERSION= argument. Possible values are
+currently 'r2p4', 'r3p0', 'r3p1', and 'r3p2-01rel1' (which also supports rel2).
+
+The build system will try to determine which of the 'armel' of 'armhf'
+toolchains your system uses, so that the correct binaries can be installed. This
+can be overridden at configure time with ABI= argument. Possible values are
+'armel' and 'armhf'.
+
+The build system will try to detect whether libX11 is installed, and if so will
+default to installing the x11 binaries. This can be overridden with the
+EGL_TYPE= configure argument. Possible values are 'framebuffer' or 'x11'.
+
+Running:
+
+> make config VERSION=r6p2 ABI=armel EGL_TYPE=framebuffer
+
+will remake config.mk with the respective values.
+
+Subsequently running:
+
+> make install
+
+will then install the lot into your system.
+
+To remove all built files, and even the configuration, run:
+
+> make clean
