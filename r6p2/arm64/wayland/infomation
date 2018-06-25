@@ -1,0 +1,12 @@
+==========================================
+DDK build information
+=====================
+DDK Version: r6p2-01rel0
+VARIANT: mali400-gles-linux-wayland-drm-dma_buf-no_Werror
+CONFIG: release
+TARGET_PLATFORM: default_8a
+TARGET_TOOLCHAIN: aarch64-linux-gcc
+
+==========================================
+Toolchain information
+=====================
